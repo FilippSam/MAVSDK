@@ -420,6 +420,10 @@ jobs:
         with:
           name: mavsdk_server_ios_simulator.framework
           path: ./build/ios_simulator/src/backend/src/
+      - name: Debugging
+        run: tree ./build
+      - name: Rename downloaded artifacts
+        run: mv ./build/ios/src/backend/src/mavsdk_server_ios.framework ./build/ios/src/backend/src/mavsdk_server.framework && mv ./build/ios_simulator/src/backend/src/mavsdk_server_ios_simulator.framework ./build/ios_simulator/src/backend/src/mavsdk_server.framework
       - name: Package
         if: startsWith(github.ref, 'refs/tags/v')
         run: bash ./src/backend/tools/package_backend_framework.bash
